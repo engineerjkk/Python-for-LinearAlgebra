@@ -1,5 +1,5 @@
 # Python-for-LinearAlgebra
-
+# PCA Color Augmentation
 ![image](https://user-images.githubusercontent.com/76835313/142559925-a2803149-63f1-47d1-9593-13ba3fda6bb6.png)
 
 - ![image](https://user-images.githubusercontent.com/76835313/142559972-1ba60017-8a2d-4bf5-8c03-fc4f4db19490.png)
@@ -89,4 +89,28 @@
 -> Z의 분산을 최대화하는 알파를 찾는다.  
 
 - eigenValue값이 주성분변수의 분산이된다. 
- 
+
+* 주성분 분석의 특징
+- 공분산 행렬의 고유벡터를 사용하므로 단일 가우시안 분포로 추정할 수 있는 데이터에 대해 서로 독립적인 축을 찾는데 사용할 수 있다.
+* 한계점
+1. **데이터의 분포가 가우시안이 아니거나 다중 가우시안 자료들에 대해서는 적용하기가 어렵다.**
+- 대안 : 커널 PCA, LLE(Locally Linear Embedding)
+2. 분류/예측 문제에 대해서 데이터의 범주 정보를 고려하지 않기 때문에 범주간 구분이 잘 되도록 변환을 해주는 것이 아니다.
+- 주성분분석은 단순히 변환된 축이 최대 분산방향과 정렬되도록 좌표회전을 수행한다.
+- 
+![image](https://user-images.githubusercontent.com/76835313/142581135-740c4294-59c5-4a1a-8efd-4b6cd8d6965e.png)
+
+---------------------------------------------------------------------------------------------------------------
+## 정리
+즉, 결국 분산이 가장 넓은 것을 찾는 것  
+![image](https://user-images.githubusercontent.com/76835313/142584541-160ae067-6b38-476e-abcf-bf85613a7288.png)
+- PCA에서 PC가 여기 Principal Component를 가리킨다.
+
+이 점들이 가지고 있는 feature들의 co varience matrix에서 aigen vector이다.
+- aigen vector는 2차원에서는 2개가 있고 4차원에서는 4개가있으며 300차원은 300개가있다.
+- ![image](https://user-images.githubusercontent.com/76835313/142584810-4cce3edf-9535-4a2d-8619-d6f5c57c924a.png)
+- 그렇기 때문에 2차원에서는 Eigen Vector는 2개가있다.
+- 여기서 Eigen Value가 높으면 커져있는 분산이 높다는 뜻이다.
+- 그렇기 때문에 PC1은 Eigen Value가 높은 Eigen Vector이며, 
+- PC2는 Eigen Value가 낮은 Eigen Vector를 가지고 있다. 
+- 따라서 Co varience matrix에서 eigen value값이 가장 높은 녀석의 eigen vector값을 기준으로 점들을 옮겨주면 PCA가 완료된다. 
