@@ -130,10 +130,14 @@
 ![image](https://user-images.githubusercontent.com/76835313/142615786-20e19020-626d-48b4-ba17-7b97d8a5b947.png)
 
 7. EigenValue가 가장 큰 Eigen Vector를 찾습니다. 이것을 정리하면 다음과 같습니다.
-8. ![image](https://user-images.githubusercontent.com/76835313/142614823-faeefaad-2400-443c-ab5d-d34593409955.png) 현재 RGB를 EigenValue와 EigenVector로 변형시켜주면 
-9. ![image](https://user-images.githubusercontent.com/76835313/142614892-7a8f9aa6-d6fa-4f74-a982-588ee2d41265.png) 이와 같은 식이 됩니다.
-10. 현재 [p1,p2,p3]는 3 by 3의 EigenVector이며 λ은 EigenValue입니다. a는 Random Variable 즉 랜덤값입니다. 
-11. 이렇게 해줌으로써(EigenVector가 존재하는 축이 이미지에 색상분포가 가장 많이 존재하는 값) PCA는 이미지에 가장 많이 존재하는 R G B 픽셀 값을 기준으로 이동하게 설계됐습니다.
-12. 예를들어 Red가 많고 Green이 최소이면 PCA 를 통하여 Red값이 가장 많이 변경됩니다.
+(이러한 방식으로 찾습니다.)
+![image](https://user-images.githubusercontent.com/76835313/142615869-7194c058-e833-499a-b537-b17eeb687219.png)
+
+
+9. ![image](https://user-images.githubusercontent.com/76835313/142614823-faeefaad-2400-443c-ab5d-d34593409955.png) 현재 RGB를 EigenValue와 EigenVector로 변형시켜주면 
+10. ![image](https://user-images.githubusercontent.com/76835313/142614892-7a8f9aa6-d6fa-4f74-a982-588ee2d41265.png) 이와 같은 식이 됩니다.
+11. 현재 [p1,p2,p3]는 3 by 3의 EigenVector이며 λ은 EigenValue입니다. a는 Random Variable 즉 랜덤값입니다. 
+12. 이렇게 해줌으로써(EigenVector가 존재하는 축이 이미지에 색상분포가 가장 많이 존재하는 값) PCA는 이미지에 가장 많이 존재하는 R G B 픽셀 값을 기준으로 이동하게 설계됐습니다.
+13. 예를들어 Red가 많고 Green이 최소이면 PCA 를 통하여 Red값이 가장 많이 변경됩니다.
 
 
