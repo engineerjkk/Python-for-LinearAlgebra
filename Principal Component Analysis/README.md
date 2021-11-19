@@ -118,3 +118,22 @@
 - 순자 변화량이 가장큰 dimesion이 가장 중요하다.
 
 각 알파i는 해당 이미지가 훈련에 다시 사용될 때까지 특정 훈련 이미지의 모든 픽셀에 대해 한 번만 그려지며, 이때 다시 그려집니다.
+
+-------------------------------------------------------------------------
+1. 먼저 이미지의 R, G, B 채널 별로 각각 Flatten화 시켜줍니다.
+2. 0~1로 normalize를 시켜줍니다.
+3. 이렇게 함으로써 Covariance Matrix를 만들어줍니다. 즉 3 by 3 의 Co variance Matrix가 됩니다.
+4.![image](https://user-images.githubusercontent.com/76835313/142615647-5861536b-f6a4-4571-aca8-c11e0920c93e.png)
+
+5. Ax=λx 의 식에서 A는 방금 Covariance Matrix이며 λ는 A의 Eigen Value x는 Eigen Vector입니다.
+6. ![image](https://user-images.githubusercontent.com/76835313/142615718-3800e91a-196a-4ed8-b5c2-453124190094.png)
+![image](https://user-images.githubusercontent.com/76835313/142615786-20e19020-626d-48b4-ba17-7b97d8a5b947.png)
+
+7. EigenValue가 가장 큰 Eigen Vector를 찾습니다. 이것을 정리하면 다음과 같습니다.
+8. ![image](https://user-images.githubusercontent.com/76835313/142614823-faeefaad-2400-443c-ab5d-d34593409955.png) 현재 RGB를 EigenValue와 EigenVector로 변형시켜주면 
+9. ![image](https://user-images.githubusercontent.com/76835313/142614892-7a8f9aa6-d6fa-4f74-a982-588ee2d41265.png) 이와 같은 식이 됩니다.
+10. 현재 [p1,p2,p3]는 3 by 3의 EigenVector이며 λ은 EigenValue입니다. a는 Random Variable 즉 랜덤값입니다. 
+11. 이렇게 해줌으로써(EigenVector가 존재하는 축이 이미지에 색상분포가 가장 많이 존재하는 값) PCA는 이미지에 가장 많이 존재하는 R G B 픽셀 값을 기준으로 이동하게 설계됐습니다.
+12. 예를들어 Red가 많고 Green이 최소이면 PCA 를 통하여 Red값이 가장 많이 변경됩니다.
+
+
