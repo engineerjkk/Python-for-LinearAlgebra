@@ -1,4 +1,28 @@
 # PCA Color Augmentation
+
+* PCA의 수학적 활용 정의
+- 고차원 데이터를 효과적으로 분석하기 위한 대표적 분석 기법
+- 차원축소, 시각화, 군집화, 압축 -> 차원축소를 함으로써 시각화, 군집화, 압축을 할 수 있게 된다라고 소개하고 있습니다
+- 컴퓨터비전에서 이러한 정의가 중요한 feature나 RGB 픽셀을 분석한다고 이해해도 좋을 것 같습니다.
+
+1. 먼저 이미지의 R, G, B 채널 별로 각각 Flatten화 시켜줍니다.
+2. 0~1로 normalize를 시켜줍니다.
+3. 이렇게 함으로써 Covariance Matrix를 만들어줍니다. 즉 3 by 3 의 Co variance Matrix가 됩니다.
+- ![image](https://user-images.githubusercontent.com/76835313/142615647-5861536b-f6a4-4571-aca8-c11e0920c93e.png)
+
+4. Ax=λx 의 식에서 A는 방금 Covariance Matrix이며 λ는 A의 Eigen Value x는 Eigen Vector입니다.
+- ![image](https://user-images.githubusercontent.com/76835313/142615718-3800e91a-196a-4ed8-b5c2-453124190094.png)
+- ![image](https://user-images.githubusercontent.com/76835313/142615786-20e19020-626d-48b4-ba17-7b97d8a5b947.png)
+
+5. EigenValue가 가장 큰 Eigen Vector를 찾습니다. 이것을 정리하면 다음과 같습니다. (이러한 방식으로 찾습니다.)
+- ![image](https://user-images.githubusercontent.com/76835313/142615869-7194c058-e833-499a-b537-b17eeb687219.png)
+- ![image](https://user-images.githubusercontent.com/76835313/142614823-faeefaad-2400-443c-ab5d-d34593409955.png) 현재 RGB를 EigenValue와 EigenVector로 변형시켜주면 
+- ![image](https://user-images.githubusercontent.com/76835313/142614892-7a8f9aa6-d6fa-4f74-a982-588ee2d41265.png) 이와 같은 식이 됩니다.
+6. 현재 [p1,p2,p3]는 3 by 3의 EigenVector이며 λ은 EigenValue입니다. a는 Random Variable 즉 랜덤값입니다. 
+7. 이렇게 해줌으로써(EigenVector가 존재하는 축이 이미지에 색상분포가 가장 많이 존재하는 값) PCA는 이미지에 가장 많이 존재하는 R G B 픽셀 값을 기준으로 이동하게 설계됐습니다.
+8. 예를들어 Red가 많고 Green이 최소이면 PCA 를 통하여 Red값이 가장 많이 변경됩니다.
+
+---------------------------------------------------------------------------------------------------------------------
 ![image](https://user-images.githubusercontent.com/76835313/142559925-a2803149-63f1-47d1-9593-13ba3fda6bb6.png)
 
 - ![image](https://user-images.githubusercontent.com/76835313/142559972-1ba60017-8a2d-4bf5-8c03-fc4f4db19490.png)
@@ -120,28 +144,5 @@
 각 알파i는 해당 이미지가 훈련에 다시 사용될 때까지 특정 훈련 이미지의 모든 픽셀에 대해 한 번만 그려지며, 이때 다시 그려집니다.
 
 -------------------------------------------------------------------------
-고차원 데이터를 효과적으로 분석하기 위한 대표적 분석 기법
-차원축소, 시각화, 군집화, 압축 -> 차원축소를 함으로써 시각화, 군집화, 압축을 할 수 있게 된다라고 소개하고 있습니다
-컴퓨터비전에서 이러한 정의가 중요한 feature나 RGB 픽셀을 분석한다고 이해해도 좋을 것 같습니다.
-
-1. 먼저 이미지의 R, G, B 채널 별로 각각 Flatten화 시켜줍니다.
-2. 0~1로 normalize를 시켜줍니다.
-3. 이렇게 함으로써 Covariance Matrix를 만들어줍니다. 즉 3 by 3 의 Co variance Matrix가 됩니다.
-4.![image](https://user-images.githubusercontent.com/76835313/142615647-5861536b-f6a4-4571-aca8-c11e0920c93e.png)
-
-5. Ax=λx 의 식에서 A는 방금 Covariance Matrix이며 λ는 A의 Eigen Value x는 Eigen Vector입니다.
-6. ![image](https://user-images.githubusercontent.com/76835313/142615718-3800e91a-196a-4ed8-b5c2-453124190094.png)
-![image](https://user-images.githubusercontent.com/76835313/142615786-20e19020-626d-48b4-ba17-7b97d8a5b947.png)
-
-7. EigenValue가 가장 큰 Eigen Vector를 찾습니다. 이것을 정리하면 다음과 같습니다.
-(이러한 방식으로 찾습니다.)
-![image](https://user-images.githubusercontent.com/76835313/142615869-7194c058-e833-499a-b537-b17eeb687219.png)
-
-
-9. ![image](https://user-images.githubusercontent.com/76835313/142614823-faeefaad-2400-443c-ab5d-d34593409955.png) 현재 RGB를 EigenValue와 EigenVector로 변형시켜주면 
-10. ![image](https://user-images.githubusercontent.com/76835313/142614892-7a8f9aa6-d6fa-4f74-a982-588ee2d41265.png) 이와 같은 식이 됩니다.
-11. 현재 [p1,p2,p3]는 3 by 3의 EigenVector이며 λ은 EigenValue입니다. a는 Random Variable 즉 랜덤값입니다. 
-12. 이렇게 해줌으로써(EigenVector가 존재하는 축이 이미지에 색상분포가 가장 많이 존재하는 값) PCA는 이미지에 가장 많이 존재하는 R G B 픽셀 값을 기준으로 이동하게 설계됐습니다.
-13. 예를들어 Red가 많고 Green이 최소이면 PCA 를 통하여 Red값이 가장 많이 변경됩니다.
 
 
