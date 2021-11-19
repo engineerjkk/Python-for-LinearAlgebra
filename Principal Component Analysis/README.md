@@ -113,3 +113,8 @@
 - 그렇기 때문에 PC1은 Eigen Value가 높은 Eigen Vector이며, 
 - PC2는 Eigen Value가 낮은 Eigen Vector를 가지고 있다. 
 - 따라서 Co varience matrix에서 eigen value값이 가장 높은 녀석의 eigen vector값을 기준으로 점들을 옮겨주면 PCA가 완료된다. 
+---------------------------------------------
+- Data는 Linear이다.
+- 순자 변화량이 가장큰 dimesion이 가장 중요하다.
+
+각 알파i는 해당 이미지가 훈련에 다시 사용될 때까지 특정 훈련 이미지의 모든 픽셀에 대해 한 번만 그려지며, 이때 다시 그려집니다.
